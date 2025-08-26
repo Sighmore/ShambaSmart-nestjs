@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/shamba_microservices/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/shamba_microservices/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/shamba_microservices",
+  "projects": {
+    "shamba_auth": {
+      "type": "application",
+      "root": "apps/shamba_auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_auth/tsconfig.app.json"
+      }
+    },
+    "shamba_contact_us": {
+      "type": "application",
+      "root": "apps/shamba_contact_us",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_contact_us/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_contact_us/tsconfig.app.json"
+      }
+    },
+    "shamba_extension": {
+      "type": "application",
+      "root": "apps/shamba_extension",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_extension/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_extension/tsconfig.app.json"
+      }
+    },
+    "shamba_gateway": {
+      "type": "application",
+      "root": "apps/shamba_gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_gateway/tsconfig.app.json"
+      }
+    },
+    "shamba_inputs": {
+      "type": "application",
+      "root": "apps/shamba_inputs",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_inputs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_inputs/tsconfig.app.json"
+      }
+    },
+    "shamba_microservices": {
+      "type": "application",
+      "root": "apps/shamba_microservices",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_microservices/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_microservices/tsconfig.app.json"
+      }
+    },
+    "shamba_notification": {
+      "type": "application",
+      "root": "apps/shamba_notification",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_notification/tsconfig.app.json"
+      }
+    },
+    "shamba_payment": {
+      "type": "application",
+      "root": "apps/shamba_payment",
+      "entryFile": "main",
+      "sourceRoot": "apps/shamba_payment/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shamba_payment/tsconfig.app.json"
+      }
+    }
+  }
+}
