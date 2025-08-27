@@ -10,16 +10,26 @@ import { ShambaGatewayService } from './shamba_gateway.service';
         name: 'AUTH_SERVICE',
         transport: Transport.KAFKA,
         options: {
-          client: { clientId: 'gateway-auth', brokers: ['localhost:9092'] },
-          consumer: { groupId: 'gateway-auth-consumer' },
+          client: {
+            clientId: 'gateway-auth',
+            brokers: ['127.0.0.1:9092'], // ✅ Force IPv4
+          },
+          consumer: {
+            groupId: 'gateway-auth-consumer',
+          },
         },
       },
       {
         name: 'PAYMENT_SERVICE',
         transport: Transport.KAFKA,
         options: {
-          client: { clientId: 'gateway-payment', brokers: ['localhost:9092'] },
-          consumer: { groupId: 'gateway-payment-consumer' },
+          client: {
+            clientId: 'gateway-payment',
+            brokers: ['127.0.0.1:9092'], // ✅ Same here
+          },
+          consumer: {
+            groupId: 'gateway-payment-consumer',
+          },
         },
       },
     ]),
