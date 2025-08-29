@@ -1,12 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import { ShambaGatewayModule } from './shamba_gateway.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ShambaGatewayModule } from './shamba_gateway.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(ShambaGatewayModule);
+  const app = await NestFactory.create(ShambaGatewayModule, {
+    logger: ['error', 'warn','log'],
+  });
 
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api/V1');
   app.enableCors();
 
   // ----- Swagger Setup -----
@@ -17,7 +19,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup('docs', app, document);
   // -------------------------
 
   // Connect the gateway to Kafka (so it can talk to microservices)
@@ -26,7 +28,7 @@ async function bootstrap() {
     options: {
       client: {
         clientId: 'gateway',
-        brokers: ['127.0.0.1:9092'],
+        brokers: ['localhost:9092'],
       },
       consumer: {
         groupId: 'gateway-consumer',

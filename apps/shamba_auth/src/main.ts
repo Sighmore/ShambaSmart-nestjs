@@ -11,7 +11,7 @@ async function bootstrap() {
       options: {
         client: {
           clientId: 'auth-service',
-          brokers: ['127.0.0.1:9092'], // match your gateway brokers
+          brokers: ['localhost:9092'],
         },
         consumer: {
           groupId: 'auth-service-consumer', // unique per service

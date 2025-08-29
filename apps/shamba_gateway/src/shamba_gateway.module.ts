@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ShambaGatewayController } from './shamba_gateway.controller';
 import { ShambaGatewayService } from './shamba_gateway.service';
+import { logLevel } from 'kafkajs';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { ShambaGatewayService } from './shamba_gateway.service';
         options: {
           client: {
             clientId: 'gateway-auth',
-            brokers: ['127.0.0.1:9092'], // ✅ Force IPv4
+            brokers: ['localhost:9092'],
+            logLevel: logLevel.INFO,
           },
           consumer: {
             groupId: 'gateway-auth-consumer',
@@ -25,7 +27,8 @@ import { ShambaGatewayService } from './shamba_gateway.service';
         options: {
           client: {
             clientId: 'gateway-payment',
-            brokers: ['127.0.0.1:9092'], // ✅ Same here
+            brokers: ['localhost:9092'],
+            logLevel: logLevel.ERROR, //
           },
           consumer: {
             groupId: 'gateway-payment-consumer',

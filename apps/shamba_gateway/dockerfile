@@ -15,8 +15,8 @@ RUN npm install --legacy-peer-deps
 # Copy the whole monorepo
 COPY . .
 
-# Build the Auth microservice
-RUN npm run build --prefix apps/shamba_auth
+# Build the NestJS gateway app
+RUN npm run build shamba_gateway
 
 # -------------------------------
 # Stage 2: Production image
@@ -25,15 +25,15 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
-# Copy only built files from builder
+# Copy only necessary files from builder
 COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/package*.json ./
 
 # Install production dependencies only
 RUN npm install --production
 
-# Expose the port your Auth service listens on
-EXPOSE 3001
+# Expose the port your gateway listens on
+EXPOSE 3000
 
 # Start the app
 CMD ["node", "dist/main.js"]

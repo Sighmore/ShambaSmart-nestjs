@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable prettier/prettier */
 /* apps/gateway/src/shamba_gateway.controller.ts */
 import { Controller, Post, Body } from '@nestjs/common';
@@ -14,14 +13,16 @@ export class ShambaGatewayController {
 
   // AUTH routes
   @Post('auth/login')
-  @ApiOperation({ summary: 'Authenticate a user via Auth microservice' }) 
+  @ApiOperation({ summary: 'Authenticate a user' }) 
   login(@Body() body: LoginDto) {
     return this.gatewayService.loginAuth(body);
   }
+  
 
   @Post('auth/register')
-  @ApiOperation({ summary: 'Register a user via Auth microservice' })
+  @ApiOperation({ summary: 'Register a user' })
   register(@Body() body: SignupDto) {
     return this.gatewayService.registerAuth(body);
   }
+
 }
